@@ -1,0 +1,365 @@
+:root {
+    --primary-color: hsl(200, 100%, 70%); 
+    --secondary-color: hsl(260, 100%, 70%); 
+    --correct-color: hsl(120, 100%, 40%);
+    --wrong-color: hsl(0, 100%, 60%);
+    --bg-dark: #1a1a2e;
+    --bg-mid: #2a2a44;
+    --text-light: #f0f8ff; 
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    background-size: cover;
+    background-position: center;
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: background-image 1s ease-in-out, filter 0.5s ease;
+}
+
+/* Ekran Yönetimi */
+.screen {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.85);
+    border-radius: 20px;
+    box-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color);
+    width: 95%;
+    max-width: 500px;
+    border: 2px solid var(--primary-color);
+    transition: transform 0.5s ease-in-out;
+}
+
+.screen.active {
+    display: flex;
+}
+
+.game-title, .info-text {
+    font-family: 'Roboto', sans-serif;
+    text-shadow: 0 0 8px var(--primary-color), 0 0 15px var(--primary-color);
+    color: var(--text-light);
+}
+
+/* Menü Butonları */
+.menu-btn {
+    padding: 15px 30px;
+    font-size: 1.2em;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    border: 2px solid var(--primary-color);
+    border-radius: 8px;
+    background-color: var(--bg-mid);
+    color: var(--primary-color);
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--primary-color);
+    transition: all 0.2s ease;
+    margin-top: 15px;
+}
+
+.menu-btn:hover {
+    background-color: var(--primary-color);
+    color: var(--bg-dark);
+    box-shadow: 0 0 20px var(--primary-color);
+}
+
+/* Oyun Ekranı */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+.pause-btn {
+    background: none;
+    border: none;
+    font-size: 1.8em;
+    color: var(--primary-color);
+    cursor: pointer;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+/* Kelime Kutuları (Petekler) */
+#word-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.word-row {
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+}
+
+.letter-box {
+    width: 40px;
+    height: 44px;
+    background-color: var(--bg-mid);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: var(--primary-color);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filled-box {
+    background-color: var(--correct-color);
+    color: var(--text-light);
+    transform: scale(1.05);
+    animation: bounce 0.6s ease-out;
+    box-shadow: 0 0 10px var(--correct-color);
+}
+
+/* Geçerli Kelime Alanı */
+#current-word-display {
+    min-height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.6em;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px var(--secondary-color);
+}
+
+/* Harf Izgarası */
+#letter-grid-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+#letter-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--primary-color);
+    max-width: 320px;
+}
+
+.letter-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px; 
+    border: none;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    font-size: 1.8em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 10px var(--secondary-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-btn:active {
+    transform: scale(0.9);
+    box-shadow: 0 0 5px var(--secondary-color);
+}
+
+/* Kontrol Butonları */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.controls .control-btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 2px solid var(--correct-color);
+    border-radius: 8px;
+    background-color: var(--bg-mid);
+    color: var(--correct-color);
+    font-weight: bold;
+    box-shadow: 0 0 10px var(--correct-color);
+    transition: all 0.2s ease;
+}
+
+.controls .control-btn:hover {
+    background-color: var(--correct-color);
+    color: var(--bg-dark);
+}
+
+/* Yardımcı Butonlar */
+.helper-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.helper-item {
+    cursor: pointer;
+    color: var(--primary-color);
+    position: relative;
+    font-size: 3em;
+    text-shadow: 0 0 10px var(--primary-color);
+    transition: transform 0.2s ease, text-shadow 0.2s ease;
+}
+
+.helper-item .helper-count {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: var(--wrong-color);
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6em;
+    font-weight: bold;
+    color: var(--text-light);
+    box-shadow: 0 0 8px var(--wrong-color);
+}
+
+/* Hakkında Ekranı */
+.about-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1em;
+    color: var(--text-light);
+    line-height: 1.5;
+    text-shadow: 0 0 5px var(--primary-color);
+    margin: 20px 0;
+}
+
+/* Ayarlar Ekranı */
+.setting-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input[type="range"] {
+    width: 80%;
+    -webkit-appearance: none;
+    background: transparent;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    background: var(--bg-mid);
+    border-radius: 1.3px;
+    border: 0.2px solid var(--primary-color);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid var(--primary-color);
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: var(--text-light);
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+}
+
+/* Animasyonlar ve Durumlar */
+@keyframes bounce {
+    0%, 100% { transform: scale(1.05); }
+    50% { transform: scale(1.15); box-shadow: 0 0 15px var(--correct-color), 0 0 25px var(--correct-color); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-8px); }
+    20%, 40%, 60%, 80% { transform: translateX(8px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+    color: var(--wrong-color);
+    text-shadow: 0 0 8px var(--wrong-color);
+}
+
+.disabled-helper {
+    opacity: 0.5;
+    cursor: not-allowed;
+    text-shadow: none;
+}
+
+/* Mobil Cihazlar için Düzenlemeler */
+@media (max-width: 600px) {
+    .screen {
+        padding: 15px;
+    }
+
+    .game-title {
+        font-size: 2em;
+    }
+
+    .menu-btn {
+        font-size: 1em;
+        padding: 12px 25px;
+    }
+
+    .top-bar {
+        font-size: 0.9em;
+    }
+
+    .letter-box {
+        width: 35px;
+        height: 38px;
+        font-size: 1.1em;
+    }
+
+    #current-word-display {
+        font-size: 1.4em;
+    }
+
+    #letter-grid {
+        gap: 8px;
+        max-width: 280px;
+    }
+
+    .letter-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5em;
+    }
+
+    .helper-item {
+        font-size: 2.5em;
+    }
+
+    .controls .control-btn {
+        font-size: 0.9em;
+        padding: 8px 18px;
+    }
+}

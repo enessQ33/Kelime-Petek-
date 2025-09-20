@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kelime Petek Oyunu</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="main-menu" class="screen active">
+        <h1 class="game-title">Kelime Petek</h1>
+        <button id="start-game-btn" class="menu-btn">Oyuna Başla</button>
+        <button id="settings-btn" class="menu-btn">Ayarlar</button>
+        <button id="about-btn" class="menu-btn">Hakkında</button>
+    </div>
+
+    <div id="game-screen" class="screen">
+        <div class="top-bar">
+            <button id="pause-btn" class="pause-btn"><i class="fas fa-bars"></i></button>
+            <span id="level-text" class="info-text">Seviye 1</span>
+            <span id="score-text" class="info-text">Puan: 0</span>
+        </div>
+        
+        <div id="word-grid"></div>
+
+        <div id="current-word-display"></div>
+
+        <div id="letter-grid-wrapper">
+            <div id="letter-grid"></div>
+        </div>
+
+        <div class="helper-buttons">
+            <div class="helper-item" id="hint-btn">
+                <i class="fas fa-lightbulb"></i>
+                <div class="helper-count">3</div>
+            </div>
+            <div class="helper-item" id="shuffle-btn">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button id="submit-btn" class="control-btn">Gönder</button>
+            <button id="clear-btn" class="control-btn">Temizle</button>
+        </div>
+    </div>
+    
+    <div id="settings-screen" class="screen">
+        <h1 class="game-title">Ayarlar</h1>
+        <div class="setting-item">
+            <label for="music-volume" class="info-text">Müzik Sesi</label>
+            <input type="range" id="music-volume" min="0" max="1" step="0.1" value="0.3">
+        </div>
+        <div class="setting-item">
+            <label for="sfx-volume" class="info-text">Efekt Sesi</label>
+            <input type="range" id="sfx-volume" min="0" max="1" step="0.1" value="0.5">
+        </div>
+        <div class="setting-item">
+            <label for="color-hue" class="info-text">Renk Tonu (RGB)</label>
+            <input type="range" id="color-hue" min="0" max="360" step="1" value="150">
+        </div>
+        <div class="setting-item">
+            <label for="brightness" class="info-text">Parlaklık</label>
+            <input type="range" id="brightness" min="0.1" max="1" step="0.05" value="1">
+        </div>
+        <button id="back-to-main-btn" class="menu-btn">Geri Dön</button>
+    </div>
+
+    <div id="pause-menu" class="screen">
+        <h1 class="game-title">Duraklatıldı</h1>
+        <button id="resume-btn" class="menu-btn">Devam Et</button>
+        <button id="return-to-main-btn" class="menu-btn">Ana Menü</button>
+    </div>
+    
+    <div id="about-screen" class="screen">
+        <h1 class="game-title">Hakkında</h1>
+        <p class="about-text">Bu oyun, özel olarak Siz Değerli Oyuncularımız için yapılmıştır. Onun hayal gücüyle başlayan bu proje, neon ışıklarının ve zihin oyunlarının birleşimiyle hayata geçti. Unutma, bu sadece bir kelime oyunu değil, aynı zamanda zekânın sınırlarını zorlayan bir yolculuk.</p>
+        <button id="back-to-main-from-about-btn" class="menu-btn">Ana Menü</button>
+    </div>
+
+    <audio id="background-music" src="background.mp3" loop></audio>
+    <audio id="correct-sound" src="correct.mp3"></audio>
+    <audio id="wrong-sound" src="wrong.mp3"></audio>
+    <audio id="click-sound" src="click.mp3"></audio>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+[
+  {
+    "letters": ["K", "O", "Y", "U"],
+    "words": ["KOY", "YOK", "OK"],
+    "bonusWord": "KOYU"
+  },
+  {
+    "letters": ["A", "L", "E", "B"],
+    "words": ["BAL", "ELA", "LALE", "BALE"],
+    "bonusWord": "ALBUM"
+  },
+  {
+    "letters": ["S", "I", "N", "A"],
+    "words": ["ANIN", "SAIN", "ASIN", "NASI"],
+    "bonusWord": "SINAV"
+  },
+  {
+    "letters": ["T", "E", "L", "A"],
+    "words": ["TALİ", "TELA", "ELAT", "LATE"],
+    "bonusWord": "LİMAN"
+  },
+  {
+    "letters": ["P", "A", "R", "K"],
+    "words": ["KAP", "ARK", "PAK"],
+    "bonusWord": "PARK"
+  },
+  {
+    "letters": ["L", "U", "N", "A"],
+    "words": ["NAL", "ULAN", "AUL"],
+    "bonusWord": "LUNAPARK"
+  },
+  {
+    "letters": ["B", "U", "K", "A"],
+    "words": ["BUKA", "KUB", "ABU"],
+    "bonusWord": "KABUK"
+  },
+  {
+    "letters": ["O", "N", "A", "M"],
+    "words": ["NAMO", "OMAN", "MANO"],
+    "bonusWord": "MOMAN"
+  },
+  {
+    "letters": ["G", "A", "Z", "I"],
+    "words": ["GAZ", "AZI", "ZIGA"],
+    "bonusWord": "IZGARA"
+  }
+]
